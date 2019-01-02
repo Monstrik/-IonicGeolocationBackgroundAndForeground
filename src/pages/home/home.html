@@ -7,8 +7,29 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h3 *ngIf="locationTrackerProvider.watch">Watch: {{!locationTrackerProvider.watch.isStopped}}</h3>
+  <h3>Current Latitude: {{locationTrackerProvider.lat}}</h3>
+  <h3>Current Longitude: {{locationTrackerProvider.lng}}</h3>
+  <button ion-button full primary (click)="start()">Start Tracking</button>
+  <button ion-button full primary (click)="stop()">Stop Tracking</button>
+  <button ion-button full primary (click)="clear()">Clear History</button>
+
+
+  <div *ngIf="locationTrackerProvider.history">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div *ngFor="let rec of locationTrackerProvider.history">
+            {{rec.source + ' ' + rec.time + ' ' +  rec.lat + ' ' + rec.lng}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div *ngFor="let log of locationTrackerProvider.logs">
+            {{log}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>
