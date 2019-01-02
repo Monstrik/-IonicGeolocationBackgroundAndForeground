@@ -23,4 +23,5 @@ export class HomePage {
   clear() {
     this.locationTrackerProvider.clearLogs();
   }
+
 }
